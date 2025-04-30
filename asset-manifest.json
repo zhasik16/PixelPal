@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PixelPal/static/css/main.8e5eafc5.css",
+    "main.js": "/PixelPal/static/js/main.6875a2a5.js",
+    "static/js/453.0f32b679.chunk.js": "/PixelPal/static/js/453.0f32b679.chunk.js",
+    "index.html": "/PixelPal/index.html",
+    "main.8e5eafc5.css.map": "/PixelPal/static/css/main.8e5eafc5.css.map",
+    "main.6875a2a5.js.map": "/PixelPal/static/js/main.6875a2a5.js.map",
+    "453.0f32b679.chunk.js.map": "/PixelPal/static/js/453.0f32b679.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8e5eafc5.css",
+    "static/js/main.6875a2a5.js"
+  ]
+}
