@@ -36,12 +36,23 @@ const Canvas = ({ username }) => {
     const [globalBanEndTime, setGlobalBanEndTime] = useState(null);
 
     useEffect(() => {
-        const newSocket = io(process.env.REACT_APP_SERVER_URL || 'http://localhost:4000');
+        const serverUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000';
+        console.log('Connecting to server:', serverUrl);
+
+        const newSocket = io(serverUrl);
         setSocket(newSocket);
 
-        newSocket.emit('user-join', username);
+        newSocket.on('connect', () => {
+            console.log('Socket connected successfully');
+            newSocket.emit('user-join', username);
+        });
+
+        newSocket.on('connect_error', (error) => {
+            console.error('Socket connection error:', error);
+        });
 
         newSocket.on('user-list', (userList) => {
+            console.log('Received user list:', userList);
             setUsers(userList);
         });
 
