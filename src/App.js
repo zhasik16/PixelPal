@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Canvas from './components/Canvas';
+import UsernameInput from './components/UsernameInput';
 import './App.css';
 
 function App() {
+  const [username, setUsername] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!username ? (
+        <UsernameInput onUsernameSet={setUsername} />
+      ) : (
+        <Canvas username={username} />
+      )}
     </div>
   );
 }
