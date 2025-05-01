@@ -36,9 +36,9 @@ const Canvas = ({ username }) => {
     const [globalBanEndTime, setGlobalBanEndTime] = useState(null);
 
     useEffect(() => {
-        const serverUrl = https://pixelpal-server.onrender.com || 'http://localhost:4000';
+        const serverUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000';
         console.log('Environment variables:', process.env);
-        console.log('REACT_APP_SERVER_URL:', https://pixelpal-server.onrender.com);
+        console.log('REACT_APP_SERVER_URL:', process.env.REACT_APP_SERVER_URL);
         console.log('Connecting to server:', serverUrl);
 
         const newSocket = io(serverUrl, {
