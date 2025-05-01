@@ -37,9 +37,16 @@ const Canvas = ({ username }) => {
 
     useEffect(() => {
         const serverUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000';
+        console.log('Environment variables:', process.env);
+        console.log('REACT_APP_SERVER_URL:', process.env.REACT_APP_SERVER_URL);
         console.log('Connecting to server:', serverUrl);
 
-        const newSocket = io(serverUrl);
+        const newSocket = io(serverUrl, {
+            transports: ['websocket'],
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 1000
+        });
         setSocket(newSocket);
 
         newSocket.on('connect', () => {
