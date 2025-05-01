@@ -45,17 +45,34 @@ const Canvas = ({ username }) => {
             transports: ['websocket'],
             reconnection: true,
             reconnectionAttempts: 5,
-            reconnectionDelay: 1000
+            reconnectionDelay: 1000,
+            timeout: 10000,
+            forceNew: true
         });
         setSocket(newSocket);
 
         newSocket.on('connect', () => {
             console.log('Socket connected successfully');
+            console.log('Socket ID:', newSocket.id);
             newSocket.emit('user-join', username);
         });
 
         newSocket.on('connect_error', (error) => {
             console.error('Socket connection error:', error);
+            console.error('Error details:', {
+                message: error.message,
+                description: error.description,
+                type: error.type,
+                context: error
+            });
+        });
+
+        newSocket.on('disconnect', (reason) => {
+            console.log('Socket disconnected:', reason);
+        });
+
+        newSocket.on('error', (error) => {
+            console.error('Socket error:', error);
         });
 
         newSocket.on('user-list', (userList) => {
