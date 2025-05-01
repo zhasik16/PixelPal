@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors({
-    origin: ["https://zhasik16.github.io", "http://localhost:3000"],
+    origin: ["https://zhasik16.github.io", "https://pixelpal-server.onrender.com"],
     credentials: true
 }));
 
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: ["https://zhasik16.github.io", "http://localhost:3000"],
+        origin: ["https://zhasik16.github.io", "https://pixelpal-server.onrender.com"],
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -140,5 +140,5 @@ const PORT = process.env.PORT || 4000;
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`WebSocket server running on port ${PORT}`);
     console.log('Environment:', process.env.NODE_ENV);
-    console.log('CORS origins:', ["https://zhasik16.github.io", "http://localhost:3000"]);
+    console.log('CORS origins:', ["https://zhasik16.github.io", "https://pixelpal-server.onrender.com"]);
 }); 
